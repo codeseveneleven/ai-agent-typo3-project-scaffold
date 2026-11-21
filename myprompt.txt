@@ -1,0 +1,26 @@
+You are to implement a Figma Design into Content-Blocks for a TYPO3 14 installation.
+
+Use the connected "Figma" MCP to read the selected designs each with desktop, tablet and mobile frames.
+Use the connected "CMS" MCP to create and update content. The MCP Server only works on a selected Workspace, this is intended behavior.
+Use the connected "typo3-dev-companion" MCP to query the TYPO3 installation for implementation details.
+
+Implement the designs in TYPO3 14 as Content Blocks content-elements plus page layouts
+(backend layouts, separate where necessary) in `packages/sitepackage`, with plain CSS
+(no build step) and a site set. Avoid creating new Page Types, rather add fields to existing ones.
+
+Requirements:
+- Use semantic HTML where possible. Use CSS where possible over JavaScript. Use best practices.
+- Don't oversaturate with CSS classes, use inheritance and CSS variables where possible.
+- Reuse fields across blocks via Basics and core fields (header, subheader, bodytext).
+  Use RTE for longer texts (textfields), with a restricted custom RTE preset that includes links, tables and lists.
+- Make every text and label editable in the frontend with friendsoftypo3/visual-editor
+  (`f:render.text`; docs: https://github.com/FriendsOfTYPO3/visual_editor/blob/main/README.md). The RTE preset must import Processing, Base and Plugins so `externalPlugins` exists.
+- Each element needs a backend preview. Use `<f:layout name="Preview"/>` with Header and Content sections.
+- Format the backend previews for the content-elements in such a way that they represent the frontend. Register custom CSS for the backend if necessary.
+- Put footer and social data in typed site settings. If there are internal links in the footer, create a system folder in the CMS for the footer and place the pages there
+- If the Layout has a meta navigation, create a system folder in the CMS and put the pages there.
+- If the extension `typo3/cms-fluid-styled-content` is installed add HTML and CSS fitting for the layout for the content elements it provides. Add matching backend previews that represent the frontend.
+- Self-host fonts and use no third-party requests.
+- Check no horizontal overflow at 375, 800 and 1280px, and zero axe violations.
+- Seed demo pages and content so the result is viewable. Use the content from Figma, or Lorem Ipsum text.
+

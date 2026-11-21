@@ -1,0 +1,22 @@
+{
+    "mcpServers": {
+        "CMS": {
+            "command": "php",
+            "args": [
+                "vendor/bin/typo3",
+                "mcp:server"
+            ]
+        },
+        "Figma": {
+            "type": "http",
+            "url": "http://127.0.0.1:3845/mcp"
+        },
+        "PHPStorm": {
+            "type": "sse",
+            "url": "http://127.0.0.1:64442/sse",
+            "headers": {
+                "IJ_MCP_SERVER_PROJECT_PATH": ""
+            }
+        }
+    }
+}
