@@ -4,7 +4,8 @@
     "type": "project",
     "config": {
         "allow-plugins": {
-			"helhum/dotenv-connector": true,
+            "helhum/dotenv-connector": true,
+            "sbuerk/fixture-packages": true,
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true
         },
@@ -62,12 +63,15 @@
 		"typo3/minimal": "^14"
     },
     "require-dev": {
-		"hn/typo3-mcp-server": "^0.7.0",
+        "hn/typo3-mcp-server": "^0.7.0",
         "saschaegerer/phpstan-typo3": "^3.1",
+        "sbuerk/fixture-packages": "^1.1",
+        "sbuerk/typo3-site-based-test-trait": "^3.0",
         "ssch/typo3-rector": "^3.17",
         "typo3/cms-styleguide": "^14.3",
-        "typo3/coding-standards": "^0.9.0"
-	},
+        "typo3/coding-standards": "^0.9.0",
+        "typo3/testing-framework": "^9.7"
+    },
 	"scripts": {
 	}
 }
