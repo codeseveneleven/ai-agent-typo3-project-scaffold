@@ -6,6 +6,7 @@
 #  0. copy .mcp-template.json to .mcp.json (only if .mcp.json doesn't exist yet)
 #  1. make sure `typo3-dev-companion` and `npx` are available (install locally if not),
 #     then run `typo3-dev-companion install` (from $PATH or the local checkout)
+#     and recommend installing Playwright if it is missing (no automatic install)
 #  2. run `npx modern-web-guidance@latest install`
 #  3. make sure `openspec` is available (install if not), then run `openspec init`
 #  4. point IJ_MCP_SERVER_PROJECT_PATH in .mcp.json to this project directory
@@ -110,6 +111,28 @@ else
         fail 'No supported package manager (brew, apt-get, dnf, apk) found. Please install Node.js from https://nodejs.org/ manually.'
     fi
     have npx || fail 'npx is still not available in $PATH after installing Node.js. Open a new shell and re-run this script.'
+fi
+
+# ---------------------------------------------------------------------------
+# 1c. Playwright (recommendation only, nothing is installed automatically)
+# ---------------------------------------------------------------------------
+# Playwright counts as installed if it is in $PATH, or if the project has it as a
+# local npm dependency (declared in package.json or present in node_modules).
+if have playwright \
+    || [ -d node_modules/@playwright/test ] \
+    || [ -d node_modules/playwright ] \
+    || { [ -f package.json ] && grep -Eq '"(@playwright/test|playwright)"' package.json; }; then
+    info 'Playwright found'
+else
+    {
+        echo 'RECOMMENDATION: Playwright is not installed.'
+        echo '  It is used for browser-based frontend verification (smoke, visual and accessibility tests).'
+        echo '  Install it with:'
+        echo '    npm install --save-dev @playwright/test && npx playwright install --with-deps'
+        if [ -d .ddev ]; then
+            echo '  For a DDEV setup, use the `typo3-playwright-ddev` skill to set up the browsers inside the container.'
+        fi
+    } >&2
 fi
 
 # ---------------------------------------------------------------------------
