@@ -35,3 +35,12 @@ context: |
 #     archive:
 #       guidance:
 #         - Summarize the archive outcome before finishing
+operations:
+  apply:
+    guidance:
+      - if git is enabled always create a feature branch first
+  archive:
+    guidance:
+      - if git is enabled and an origin is set and we are in a feature branch, create a pull request if the branch is not merged yet
+      - if git is enabled and no origin is set and we are in a feature branch, merge the branch into the main branch and delete the feature branch
+
